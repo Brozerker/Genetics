@@ -9,9 +9,6 @@
 #include <vector>
 using namespace std;
 
-#define NUM_TO_MUTATE 2
-#define POPUATION_SIZE 20
-
 struct Individual {
 public:
 	float fitness;
@@ -23,6 +20,7 @@ public:
 
 class Genetic_Algorigthm {
 	int currentGen = 0;
+	int timesToMutate;
 	bool display = false;
 	bool goalReached = false;
 	string goal = "geneticalgorithmscanbefun"; // skip at 7, 17, 20, 22  
@@ -30,14 +28,10 @@ class Genetic_Algorigthm {
 	string alphabet = "abcdefghijklmnopqrstuvwxyz";
 	vector<Individual> population;
 	Individual previousBest;
-	int popSize = POPUATION_SIZE;
+	int popSize;
 
 public:
-	Genetic_Algorigthm() {
-		//goal = { 'g', 'e', 'n', 'e', 't', 'i', 'c', 'a', 'l', 'g', 'o', 'r', 'i', 't', 'h', 'm', 's', 'c', 'a', 'n', 'b', 'e', 'f', 'u', 'n' }; // skip at 7, 17, 20, 22  
-		//strcopy(goal = "geneticalgorithmscanbefun";
-		//alphabet = "abcdefghijklmnopqrstuvwxyz";
-	}
+	Genetic_Algorigthm(int populationSize, int mutate) : timesToMutate(mutate), popSize(populationSize) {}
 	~Genetic_Algorigthm(){}
 
 	void initPop() {
@@ -93,7 +87,7 @@ public:
 
 	// changes NUM_TO_MUTATE characters in the passed string to random, new ones
 	void mutate(Individual & mutating) {
-		for (int i = 0; i < NUM_TO_MUTATE; ++i) {
+		for (int i = 0; i < timesToMutate; ++i) {
 			int randPos = rand() % goalSize;
 			char randChar = alphabet[rand() % 26]; // (sizeof(alphabet) / sizeof(alphabet[0]))];
 			if (mutating.str[randPos] != goal[randPos])
