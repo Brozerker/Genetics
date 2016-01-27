@@ -4,7 +4,7 @@ using namespace std;
 
 int main() {
 	int popSize, mutateTimes;
-	cout << "how big should the start population be?" << endl;
+	cout << "how big should the base population be?" << endl;
 	cin >> popSize;
 	cout << "how many times should an Individual mutate each cycle?" << endl;
 	cin >> mutateTimes;
